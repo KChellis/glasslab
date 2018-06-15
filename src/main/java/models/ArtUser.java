@@ -7,4 +7,8 @@ public class ArtUser extends Art{
         super(name, type, materials, price, images, description, keywords);
         this.style = style;
     }
+
+    public String getStyle() {
+        return style;
+    }
 }

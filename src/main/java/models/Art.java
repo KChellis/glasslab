@@ -19,4 +19,40 @@ public class Art {
         this.description = description;
         this.keywords = keywords;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String[] getMaterials() {
+        return materials;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String[] getKeywords() {
+        return keywords;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

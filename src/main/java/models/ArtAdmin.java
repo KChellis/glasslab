@@ -7,4 +7,8 @@ public class ArtAdmin extends Art{
         super(name, type, materials, price, images, description, keywords);
         this.styles = styles;
     }
+
+    public String[] getStyles() {
+        return styles;
+    }
 }
