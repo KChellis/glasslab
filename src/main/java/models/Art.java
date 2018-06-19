@@ -19,6 +19,7 @@ public class Art {
         this.images = images;
         this.description = description;
         this.keywords = keywords;
+        this.style=style;
     }
 
     public String getName() {
@@ -29,7 +30,7 @@ public class Art {
         return type;
     }
 
-    public String[] getMaterials() {
+    public String getMaterials() {
         return materials;
     }
 
@@ -37,7 +38,7 @@ public class Art {
         return price;
     }
 
-    public String[] getImages() {
+    public String getImages() {
         return images;
     }
 
@@ -45,8 +46,12 @@ public class Art {
         return description;
     }
 
-    public String[] getKeywords() {
+    public String getKeywords() {
         return keywords;
+    }
+
+    public String getStyle() {
+        return style;
     }
 
     public int getId() {
