@@ -1,5 +1,7 @@
 package models;
 
+import java.util.Objects;
+
 public class Art {
     private String name;
     private String type;
@@ -60,5 +62,27 @@ public class Art {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Art art = (Art) o;
+        return price == art.price &&
+                id == art.id &&
+                Objects.equals(name, art.name) &&
+                Objects.equals(type, art.type) &&
+                Objects.equals(materials, art.materials) &&
+                Objects.equals(images, art.images) &&
+                Objects.equals(description, art.description) &&
+                Objects.equals(keywords, art.keywords) &&
+                Objects.equals(style, art.style);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(name, type, materials, price, images, description, keywords, style, id);
     }
 }
