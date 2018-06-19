@@ -9,17 +9,17 @@
 _This API was built as practice in building APIs in java and using one to many and many to many database relationships._
 
 ## User Stories
-_As a user, I want to see  a list of all available art_
-_As a user, I want to see art details_
-_As a user, I want to add items to cart_
-_As a user, remove items from cart_  
--As a user, I want to place an order_
--As an admin, I want to be able to add Art to the database_
-_As an admin, I want to delete Art that is no longer carried_
-_As an admin, I want to edit art where details change_
-_As an admin, I want to view orders_
-_As an admin, I want to mark orders sent_
-_As an admin, I want to know if an order is new_ 
+*_As a user, I want to see  a list of all available art_
+*_As a user, I want to see art details_
+*_As a user, I want to add items to cart_
+*_As a user, remove items from cart_  
+*_As a user, I want to place an order_
+*_As an admin, I want to be able to add Art to the database_
+*_As an admin, I want to delete Art that is no longer carried_
+*_As an admin, I want to edit art where details change_
+*_As an admin, I want to view orders_
+*_As an admin, I want to mark orders sent_
+*_As an admin, I want to know if an order is new_ 
 
 
 ## Setup/Installation Requirements
