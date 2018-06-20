@@ -12,3 +12,19 @@ CREATE TABLE IF NOT EXISTS art (
   style VARCHAR
 
 );
+
+CREATE TABLE IF NOT EXISTS orders (
+  id int PRIMARY KEY auto_increment,
+  isNew BOOLEAN,
+  sent BOOLEAN,
+  firstName VARCHAR,
+  lastName VARCHAR,
+  street VARCHAR,
+  city VARCHAR,
+  state VARCHAR,
+  zip INTEGER,
+  email VARCHAR,
+  phone VARCHAR,
+  createdAt BIGINT
+
+);
