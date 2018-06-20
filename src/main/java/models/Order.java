@@ -1,20 +1,26 @@
 package models;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Order {
     private boolean isNew = true;
     private boolean sent = false;
-    private String fname;
+    private String firstName;
+    private String lastName;
     private String street;
     private String city;
     private String state;
-    private String zip;
+    private int zip;
     private String email;
     private String phone;
     private long createdAt;
     private String formattedCreatedAt;
+    private int id;
 
-    public Order(String fname, String street, String city, String state, String zip, String email, String phone) {
-        this.fname = fname;
+    public Order(String firstName, String lastName, String street, String city, String state, int zip, String email, String phone) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.street = street;
         this.city = city;
         this.state = state;
@@ -25,8 +31,12 @@ public class Order {
         setFormattedCreatedAt();
     }
 
-    public String getFname() {
-        return fname;
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public String getStreet() {
@@ -41,7 +51,7 @@ public class Order {
         return state;
     }
 
-    public String getZip() {
+    public int getZip() {
         return zip;
     }
 
@@ -79,6 +89,17 @@ public class Order {
     }
 
     public void setFormattedCreatedAt() {
+        Date date = new Date(this.createdAt);
+        String datePatternToUse = "MM/dd/yyyy @ K:mm a";
+        SimpleDateFormat sdf = new SimpleDateFormat(datePatternToUse);
+        this.formattedCreatedAt = sdf.format(date);
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
