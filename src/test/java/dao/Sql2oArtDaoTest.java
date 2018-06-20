@@ -7,6 +7,9 @@ import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static org.junit.Assert.*;
 
 public class Sql2oArtDaoTest {
@@ -38,19 +41,45 @@ public class Sql2oArtDaoTest {
     }
 
     @Test
+    public void getAll_returnsAllMembers() {
+        Art testArt = setupArt();
+        Art altArt = setupOtherArt();
+        assertEquals(2, artDao.getAll().size());
+    }
+
+    @Test
     public void findById() {
+        Art testArt = setupArt();
+        Art altArt = setupOtherArt();
+        assertEquals(altArt.getName(), artDao.findById(altArt.getId()).getName());
     }
 
     @Test
     public void update() {
+        Art testArt = setupArt();
+        HashMap<String, Object> updateContent = new HashMap<>();
+        updateContent.put("name", "necklace");
+        artDao.update(testArt.getId(), updateContent);
+        assertNotEquals(testArt.getName(), artDao.findById(testArt.getId()).getName());
+        assertEquals("necklace", artDao.findById(testArt.getId()).getName());
+
     }
 
     @Test
     public void deleteById() {
+        Art testArt = setupArt();
+        Art altArt = setupOtherArt();
+        artDao.deleteById(testArt.getId());
+        assertEquals(1, artDao.getAll().size());
+        assertEquals("name2", artDao.findById(altArt.getId()).getName());
     }
 
     @Test
     public void clearAllArts() {
+        Art testArt = setupArt();
+        Art altArt = setupOtherArt();
+        artDao.clearAllArts();
+        assertEquals(0, artDao.getAll().size());
     }
 
     //helper

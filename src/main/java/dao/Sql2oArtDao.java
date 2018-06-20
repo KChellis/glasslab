@@ -40,21 +40,50 @@ public class Sql2oArtDao implements ArtDao {
 
     @Override
     public Art findById(int id) {
-        return null;
+        String sql = "SELECT * FROM art WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Art.class);
+        }
     }
 
     @Override
     public void update(int id, HashMap<String, Object> updateContent) {
-
+        for(String key : updateContent.keySet()){
+            String sql = "UPDATE art SET " + key + " = :" + key + " WHERE id = :id";
+            try (Connection con = sql2o.open()) {
+                con.createQuery(sql)
+                        .addParameter(key, updateContent.get(key))
+                        .addParameter("id", id)
+                        .executeUpdate();
+            } catch (Sql2oException ex) {
+                System.out.println(ex);
+            }
+        }
     }
 
     @Override
     public void deleteById(int id) {
-
+        String sql = "DELETE FROM art WHERE id=:id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
     }
 
     @Override
     public void clearAllArts() {
+        String sql = "DELETE FROM art";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .executeUpdate();
+        } catch (Sql2oException ex) {
+            System.out.println(ex);
+        }
 
     }
 }
