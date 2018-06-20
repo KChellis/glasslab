@@ -13,13 +13,13 @@ public class OrderTest {
     @Test
     public void newOrderInstantiatesWithIsNewTrue() {
         Order testOrder = setupOrder();
-        assertTrue(testOrder.isNew());
+        assertTrue(testOrder.getUnread());
     }
 
     @Test
     public void newOrderInstantiatesWithSentFalse() {
         Order testOrder = setupOrder();
-        assertFalse(testOrder.isSent());
+        assertFalse(testOrder.getSent());
     }
 
     @Test
@@ -73,15 +73,15 @@ public class OrderTest {
     @Test
     public void setNewChangesIsNew() {
         Order testOrder = setupOrder();
-        testOrder.setNew(false);
-        assertFalse(testOrder.isNew());
+        testOrder.setUnread(false);
+        assertFalse(testOrder.getUnread());
     }
 
     @Test
     public void setSentChangesSent() {
         Order testOrder = setupOrder();
         testOrder.setSent(true);
-        assertTrue(testOrder.isNew());
+        assertTrue(testOrder.getUnread());
     }
 
     @Test

@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS art (
 
 CREATE TABLE IF NOT EXISTS orders (
   id int PRIMARY KEY auto_increment,
-  isNew BOOLEAN,
+  unread BOOLEAN,
   sent BOOLEAN,
   firstName VARCHAR,
   lastName VARCHAR,

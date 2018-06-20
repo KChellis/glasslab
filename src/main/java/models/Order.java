@@ -4,8 +4,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Order {
-    private boolean isNew = true;
-    private boolean sent = false;
+    private boolean unread;
+    private boolean sent;
     private String firstName;
     private String lastName;
     private String street;
@@ -19,6 +19,8 @@ public class Order {
     private int id;
 
     public Order(String firstName, String lastName, String street, String city, String state, int zip, String email, String phone) {
+        this.unread=true;
+        this.sent = false;
         this.firstName = firstName;
         this.lastName = lastName;
         this.street = street;
@@ -63,15 +65,15 @@ public class Order {
         return phone;
     }
 
-    public boolean isNew() {
-        return isNew;
+    public boolean getUnread() {
+        return unread;
     }
 
-    public void setNew(boolean aNew) {
-        isNew = aNew;
+    public void setUnread(boolean unread) {
+        this.unread = unread;
     }
 
-    public boolean isSent() {
+    public boolean getSent() {
         return sent;
     }
 
