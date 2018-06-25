@@ -62,6 +62,52 @@ public class App {
             return gson.toJson(artDao.getArtStylesByName(artName));
         });
 
+        get("/order", "application/json", (req, res) -> {
+            return gson.toJson(orderDao.getAll());
+        });
+
+        post("/order/new", "application/json", (req, res) -> {
+            Order order = gson.fromJson(req.body(), Order.class);
+            orderDao.add(order);
+            res.status(201);
+            return gson.toJson(order);
+        });
+
+        get("/order/:orderId", "application/json", (req, res) -> {
+            int orderId = Integer.parseInt(req.params("orderId"));
+            return gson.toJson(orderDao.findById(orderId));
+        });
+
+        get("/order/:orderId/delete", "application/json", (req, res) -> {
+            int orderId = Integer.parseInt(req.params("orderId"));
+            orderDao.deleteById(orderId);
+            return "{\"message\":\"Order Deleted\"}";
+        });
+
+        post("/order/:orderId/update", "application/json", (req, res) -> {
+            int orderId = Integer.parseInt(req.params("orderId"));
+            HashMap<String, Object> updateContent = gson.fromJson(req.body(), HashMap.class);
+            res.status(201);
+            orderDao.update(orderId, updateContent);
+            return gson.toJson(orderDao.findById(orderId));
+        });
+
+        get("/order/:orderId/art", "application/json", (req, res) -> {
+            int orderId = Integer.parseInt(req.params("orderId"));
+            orderDao.deleteById(orderId);
+            return gson.toJson(orderDao.getArtInOrder(orderId));
+        });
+
+        post("/order/:orderId/art/:artId", "application/json", (req, res) -> {
+            int orderId = Integer.parseInt(req.params("orderId"));
+            int artId = Integer.parseInt(req.params("artId"));
+            res.status(201);
+            orderDao.addArtToOrder(artId, orderId);
+            return gson.toJson(orderDao.findById(orderId));
+        });
+
+
+
         after((request, response) -> {
             response.type("application/json");
         });
