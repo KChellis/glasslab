@@ -5,6 +5,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -85,5 +86,17 @@ public class Sql2oArtDao implements ArtDao {
             System.out.println(ex);
         }
 
+    }
+
+    @Override
+    public List<String> getArtStylesByName(String artName) {
+
+        String joinQuery = "SELECT style FROM art WHERE name = :artName";
+
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(joinQuery)
+                    .addParameter("artName", artName)
+                    .executeAndFetch(String.class);
+        }
     }
 }

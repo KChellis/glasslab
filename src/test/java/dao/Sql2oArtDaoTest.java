@@ -82,6 +82,14 @@ public class Sql2oArtDaoTest {
         assertEquals(0, artDao.getAll().size());
     }
 
+    @Test
+    public void getArtStylesByName_returnsArtStyles() {
+        Art testArt = setupArt();
+        Art altArt = setupOtherArt();
+        artDao.getArtStylesByName(testArt.getName());
+        assertEquals(1, artDao.getArtStylesByName(testArt.getName()).size());
+    }
+
     //helper
     public Art setupArt(){
         Art art = new Art("name", "type", "materials", 500, "images", "description", "keywords", "style");

@@ -13,6 +13,7 @@ public interface ArtDao {
 
     //READ
     Art findById(int id);
+    List<String> getArtStylesByName(String artName);
 
     //UPDATE
     void update(int id, HashMap<String, Object> updateContent);
