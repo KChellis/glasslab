@@ -1,5 +1,6 @@
 package dao;
 
+import models.Art;
 import models.Order;
 
 import java.util.HashMap;
@@ -13,6 +14,7 @@ public interface OrderDao {
 
     //READ
     Order findById(int id);
+    List<Art> getArtInOrder(int orderId);
 
     //UPDATE
     void update(int id, HashMap<String, Object> updateContent);
@@ -20,4 +22,6 @@ public interface OrderDao {
     //DELETE
     void deleteById(int id);
     void clearAllOrders();
+
+    void addArtToOrder(int artId, int orderId);
 }

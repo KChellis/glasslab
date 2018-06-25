@@ -1,5 +1,6 @@
 package dao;
 
+import models.Art;
 import models.Order;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
@@ -85,5 +86,15 @@ public class Sql2oOrderDao implements OrderDao{
             System.out.println(ex);
         }
 
+    }
+
+    @Override
+    public void addArtToOrder(int artId, int orderId) {
+
+    }
+
+    @Override
+    public List<Art> getArtInOrder(int orderId) {
+        return null;
     }
 }

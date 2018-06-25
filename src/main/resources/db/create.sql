@@ -28,3 +28,10 @@ CREATE TABLE IF NOT EXISTS orders (
   createdAt BIGINT
 
 );
+
+CREATE TABLE IF NOT EXISTS orders_art (
+  id int PRIMARY KEY auto_increment,
+  orderId INTEGER,
+  artId INTEGER
+
+);
