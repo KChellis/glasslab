@@ -6,6 +6,7 @@ import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -90,11 +91,38 @@ public class Sql2oOrderDao implements OrderDao{
 
     @Override
     public void addArtToOrder(int artId, int orderId) {
+        String sql = "INSERT INTO orders_art (artId, orderId) VALUES (:artId, :orderId)";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("artId", artId)
+                    .addParameter("orderId", orderId)
+                    .executeUpdate();
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
 
     }
 
     @Override
     public List<Art> getArtInOrder(int orderId) {
-        return null;
+        ArrayList<Art> art = new ArrayList<>();
+
+        String joinQuery = "SELECT artId FROM orders_art WHERE orderId = :orderId";
+
+        try (Connection con = sql2o.open()) {
+            List<Integer> allArtIds = con.createQuery(joinQuery)
+                    .addParameter("orderId", orderId)
+                    .executeAndFetch(Integer.class);
+            for (Integer artId : allArtIds){
+                String restaurantQuery = "SELECT * FROM art WHERE id = :artId";
+                art.add(
+                        con.createQuery(restaurantQuery)
+                                .addParameter("artId", artId)
+                                .executeAndFetchFirst(Art.class));
+            }
+        } catch (Sql2oException ex){
+            System.out.println(ex);
+        }
+        return art;
     }
 }
